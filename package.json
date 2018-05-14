@@ -1,0 +1,49 @@
+{
+  "name": "app-qrcode-service",
+  "version": "0.2.0",
+  "description": "Devebot application qrcode REST API layerware",
+  "homepage": "https://github.com/apporo/app-qrcode-service.git",
+  "author": {
+    "name": "apporo",
+    "email": "apporo@devebot.com",
+    "url": "https://github.com/apporo"
+  },
+  "main": "index.js",
+  "directories": {
+    "lib": "lib/"
+  },
+  "files": [
+    "bin/",
+    "config/",
+    "data/",
+    "lib/"
+  ],
+  "scripts": {
+    "build": "babel ./src -d ./lib",
+    "clean": "rm -rf ./lib",
+    "prepublish": "npm run clean && NODE_ENV=${DEVEBOT_NODE_ENV:-production} npm run build",
+    "pretest": "npm run clean && NODE_ENV=${DEVEBOT_NODE_ENV:-test} npm run build",
+    "test": "mocha --recursive ./test/**/*-test.js",
+    "verify": "npm run prepublish && mocha --recursive ./test/**/*-test.js"
+  },
+  "keywords": [
+    "devebot",
+    "devebot-plugin"
+  ],
+  "peerDependencies": {
+    "app-qrcode": "^0.2.0",
+    "app-webweaver": "^0.2.2",
+    "devebot": "^0.2.6"
+  },
+  "dependencies": {
+    "app-qrcode": "^0.2.0",
+    "app-webweaver": "^0.2.2",
+    "devebot": "^0.2.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-minify-mangle-names": "^0.3.0",
+    "babel-preset-env": "^1.6.1",
+    "mocha": "^4.1.0"
+  }
+}
